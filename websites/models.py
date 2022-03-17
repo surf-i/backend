@@ -34,7 +34,7 @@ class Website(models.Model):
     nombre = models.CharField(null=False, max_length=50)
     url = models.URLField(null=False, max_length=50)
     calificacionPromedio = models.DecimalField(null=False, decimal_places=2, max_digits=4)
-    gradoCalificacionPromedio = models.DecimalField(null=False, decimal_places=2, max_digits=4)
+    gradoVeracidadPromedio = models.DecimalField(null=False, decimal_places=2, max_digits=4)
     categorias = models.ManyToManyField(Categoria, default=None)
 
     def __str__(self):
