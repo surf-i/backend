@@ -14,6 +14,7 @@ class Categoria(models.Model):
         COMERCIO = 'COMERCIO', _('Comercio')
         TECNOLOGIA = 'TECNOLOGIA', _('Tecnologia')
         PRODUCTIVIDAD = 'PRODUCTIVIDAD', _('Productividad')
+        TURISMO = 'TURISMO', _('Turismo')
     tipo = models.CharField(null=False, max_length=50, choices=CategoriaEnum.choices, default=CategoriaEnum.SOCIAL, primary_key=True)
 
     def is_upperclass(self):
