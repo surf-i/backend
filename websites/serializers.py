@@ -7,4 +7,5 @@ class WebsiteSerializer(serializers.ModelSerializer):
                   'nombre',
                   'url',
                   'calificacionPromedio',
+                  'gradoCalifiacionPromedio'
                   'categorias')
