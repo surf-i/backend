@@ -2,6 +2,7 @@ from django.db import models
 from websites.models import Website, Categoria
 from store.models import Funcionalidad
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.models import User
 import uuid
 # Create your models here.
 
@@ -24,16 +25,16 @@ class TipoUsuario(models.Model):
         return f"{self.tipo}"
 
 class Usuario(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    correo = models.EmailField(max_length=254, null=False, unique=True)
-    contrasena = models.CharField(max_length=254, null=False)
+    user = models.OneToOneField(User, models.CASCADE, primary_key=True, default="")
     nombre = models.CharField(max_length=100, null=False)
     puntos = models.IntegerField(null=False, default=0)
     fechaVencimiento = models.DateField(null=False)
-    tipoUsuario = models.ForeignKey(TipoUsuario, null=False, on_delete=models.CASCADE)
+    tipoUsuario = models.ForeignKey(TipoUsuario, on_delete=models.CASCADE)
 
+    REQUIRED_FIELDS = ('tipoUsuario')
+    
     def __str__(self):
-        return f"{self.correo}"
+        return f"Usuario: {self.user.username}"
 
 class Review(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)

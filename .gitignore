@@ -372,6 +372,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-
+*.cpython
 .vscode
 SurfiBack/settings.py

@@ -41,8 +41,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.facebook',
-    'allauth.socialaccount.providers.twitter',
+    'allauth.socialaccount.providers.discord',
     'websites',
     'store',
     'users'
@@ -123,7 +122,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'es-MX'
 
-TIME_ZONE = 'Americas/Bogota'
+TIME_ZONE = 'America/Bogota'
 
 USE_I18N = True
 
@@ -150,4 +149,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3 
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
+ACCOUNT_LOGOUT_ON_GET = True
