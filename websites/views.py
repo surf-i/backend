@@ -31,13 +31,3 @@ def single_website_view(request, pk):
         website_serializer = WebsiteSerializer(website, many=True)
         return JsonResponse(website_serializer.data, safe=False)
     return JsonResponse(website_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    """
-    if request.method == "PUT":
-        website_dto = JSONParser().parse(request)
-        website = wl.get_website(pk)
-        website_serializer = WebsiteSerializer(website, data=website_dto)
-        if website_serializer.is_valid():
-            website_serializer.save()
-            return JsonResponse(website_serializer.data)
-        return JsonResponse(website_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        """
