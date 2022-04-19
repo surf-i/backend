@@ -22,16 +22,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ["DJANGO_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
-SECURE_SSL_REDIRECT = True
-SECURE_HSTS_SECONDS = True
-SESSION_COOKIE_SECURE = True
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECURE_HSTS_PRELOAD = True
-CSRF_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = False
+SECURE_HSTS_SECONDS = False
+SESSION_COOKIE_SECURE = False
+SECURE_HSTS_INCLUDE_SUBDOMAINS = False
+SECURE_HSTS_PRELOAD = False
+CSRF_COOKIE_SECURE = False
 
 
 # Application definition
@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.sites',
     'django.contrib.staticfiles',
-    "ebhealthcheck.apps.EBHealthCheckConfig",
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -161,3 +160,4 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
 ACCOUNT_LOGOUT_ON_GET = True
+ACCOUNT_SIGNUP_FORM_CLASS = 'users.forms.SignupForm'
