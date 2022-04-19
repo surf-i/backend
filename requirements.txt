@@ -4,3 +4,4 @@ djongo
 dnspython==2.2.1
 pymongo==3.12.1
 django-allauth==0.50.0
+django-ebhealthcheck==2.0.1

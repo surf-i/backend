@@ -11,47 +11,6 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 import os
 from pathlib import Path
-import requests
-
-def is_ec2_linux():
-    """Detect if we are running on an EC2 Linux Instance
-    See http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/identify_ec2_instances.html
-    """
-    if os.path.isfile("/sys/hypervisor/uuid"):
-        with open("/sys/hypervisor/uuid") as f:
-            uuid = f.read()
-            return uuid.startswith("ec2")
-    return False
-
-def get_token():
-    """Set the autorization token to live for 6 hours (maximum)"""
-    headers = {
-        'X-aws-ec2-metadata-token-ttl-seconds': '21600',
-    }
-    response = requests.put('http://169.254.169.254/latest/api/token', headers=headers)
-    return response.text
-
-
-def get_linux_ec2_private_ip():
-    """Get the private IP Address of the machine if running on an EC2 linux server.
-    See https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-retrieval.html"""
-
-    if not is_ec2_linux():
-        return None
-    try:
-        token = get_token()
-        headers = {
-            'X-aws-ec2-metadata-token': f"{token}",
-        }
-        response = requests.get('http://169.254.169.254/latest/meta-data/local-ipv4', headers=headers)
-        return response.text
-    except:
-        return None
-    finally:
-        if response:
-            response.close()
-
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -66,9 +25,6 @@ SECRET_KEY = os.environ["DJANGO_KEY"]
 DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1']
-private_ip = get_linux_ec2_private_ip()
-if private_ip:
-   ALLOWED_HOSTS.append(private_ip)
 
 SECURE_SSL_REDIRECT = True
 SECURE_HSTS_SECONDS = True
@@ -88,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.sites',
     'django.contrib.staticfiles',
+    "ebhealthcheck.apps.EBHealthCheckConfig",
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
