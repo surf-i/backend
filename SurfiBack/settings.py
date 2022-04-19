@@ -19,12 +19,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-xv0l=pk!8ao%)c-57ac2hnf+am3aieva%jcb&(!y8&coyt93r='
+SECRET_KEY = os.environ["DJANGO_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
+
+SECURE_SSL_REDIRECT = True
+SECURE_HSTS_SECONDS = True
+SESSION_COOKIE_SECURE = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+CSRF_COOKIE_SECURE = True
 
 
 # Application definition
@@ -84,7 +91,7 @@ WSGI_APPLICATION = 'SurfiBack.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 # URL de la conexión a MongoDB
-DB_URI = os.environ["MONGO_KEY"]
+DB_URI ="mongodb+srv://JRAdmin:3Tbzvm8qQRgaWakD@surfiback.avodu.mongodb.net/SurfiBack?retryWrites=true&w=majority" #os.environ["MONGO_KEY"]
 
 DATABASES = {
     'default': {
@@ -131,6 +138,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 STATIC_URL = 'static/'
 

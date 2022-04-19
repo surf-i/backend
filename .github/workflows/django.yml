@@ -16,6 +16,10 @@ jobs:
         python-version: [3.7, 3.8, 3.9]
 
     steps:
+    - name: Set Up Env Vars
+      env:
+        DJANGO_KEY: ${{ secrets.DJANGO_KEY }}
+        MONGO_KEY: $ {{ secrets.MONGO_KEY }}
     - uses: actions/checkout@v3
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v3
@@ -28,3 +32,38 @@ jobs:
     - name: Run Tests
       run: |
         python manage.py test
+
+  deploy:
+    needs: [build]
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout source code
+      uses: actions/checkout@v2
+
+    - name: Generate deployment package
+      run: zip -r deploy.zip . -x '*.git*'
+
+    - name: Set Up Env Vars
+      env:
+        DJANGO_KEY: ${{ secrets.DJANGO_KEY }}
+        MONGO_KEY: $ {{ secrets.MONGO_KEY }}
+
+    - name: Deploy to EB
+      uses: einaregilsson/beanstalk-deploy@v20
+      with:
+      
+      	// Remember the secrets we embedded? this is how we access them
+        aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        
+        // Replace the values here with your names you submitted in one of 
+        // The previous sections
+        application_name: Surfi
+        environment_name: Surfi-env
+        
+        // The version number could be anything. You can find a dynamic way 
+        // Of doing this.
+        version_label: 12348
+        region: "us-east-1"
+        deployment_package: deploy.zip

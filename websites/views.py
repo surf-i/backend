@@ -1,4 +1,4 @@
-from django.views.decorators.csrf import csrf_exempt
+
 from django.http.response import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.parsers import JSONParser 
@@ -8,7 +8,7 @@ from .logic import websites_logic as wl
 # Create your views here.
 
 
-@csrf_exempt
+
 @api_view(['GET', 'POST', 'PUT'])
 def multiple_website_view(request):
     if request.method == "GET":
@@ -23,7 +23,6 @@ def multiple_website_view(request):
             return JsonResponse(website_serializer.data, status=status.HTTP_201_CREATED)
         return JsonResponse(website_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@csrf_exempt
 @api_view(["PUT", "DELETE", "GET"])
 def single_website_view(request, pk):
     if request.method == "GET":
