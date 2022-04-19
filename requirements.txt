@@ -1,6 +1,6 @@
-Django
-djangorestframework
+Django==4.0.3
+djangorestframework==3.13.1
 djongo
 dnspython==2.2.1
-pymongo
-django-allauth
+pymongo==3.12.1
+django-allauth==0.50.0
