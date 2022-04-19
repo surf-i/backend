@@ -29,6 +29,6 @@ jobs:
         application_name: Surfi
         environment_name: Surfi-env
         
-        version_label: 1.0
+        version_label: 0.0.1
         region: "us-east-1"
         deployment_package: deploy.zip

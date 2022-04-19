@@ -92,7 +92,7 @@ WSGI_APPLICATION = 'SurfiBack.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 # URL de la conexión a MongoDB
-DB_URI ="mongodb+srv://JRAdmin:3Tbzvm8qQRgaWakD@surfiback.avodu.mongodb.net/SurfiBack?retryWrites=true&w=majority" #os.environ["MONGO_KEY"]
+DB_URI = os.environ["MONGO_KEY"]
 
 DATABASES = {
     'default': {
