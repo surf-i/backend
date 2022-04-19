@@ -20,7 +20,8 @@ jobs:
       env:
         DJANGO_KEY: ${{ secrets.DJANGO_KEY }}
         MONGO_KEY: $ {{ secrets.MONGO_KEY }}
-    - uses: actions/checkout@v3
+    - name: Checkout
+      uses: actions/checkout@v3
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v3
       with:
