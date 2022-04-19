@@ -5,8 +5,6 @@ from rest_framework.parsers import JSONParser
 from .serializers import WebsiteSerializer
 from rest_framework import status
 from .logic import websites_logic as wl
-# Create your views here.
-
 
 
 @api_view(['GET', 'POST', 'PUT'])

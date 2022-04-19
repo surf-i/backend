@@ -47,7 +47,6 @@ class Review(models.Model):
     website = models.ForeignKey(Website, null=False, on_delete=models.CASCADE)
     categoria = models.ForeignKey(Categoria, null=False, on_delete=models.CASCADE)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
-    funcionalidadesDesbloqueadas = models.ManyToManyField(Funcionalidad, default=None)
     
 
     def __str__(self):
