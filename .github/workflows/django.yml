@@ -46,11 +46,6 @@ jobs:
     - name: Generate deployment package
       run: zip -r deploy.zip . -x '*.git*'
 
-    - name: Set Up Env Vars
-      env:
-        DJANGO_KEY: ${{ secrets.DJANGO_KEY }}
-        MONGO_KEY: $ {{ secrets.MONGO_KEY }}
-
     - name: Deploy to EB
       uses: einaregilsson/beanstalk-deploy@v20
       with:
