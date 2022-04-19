@@ -19,10 +19,6 @@ jobs:
         python-version: [3.7, 3.8, 3.9]
 
     steps:
-    - name: Set Up Env Vars
-      env:
-        DJANGO_KEY: ${{ secrets.DJANGO_KEY }}
-        MONGO_KEY: $ {{ secrets.MONGO_KEY }}
     - name: Checkout
       uses: actions/checkout@v3
     - name: Set up Python ${{ matrix.python-version }}
@@ -40,9 +36,9 @@ jobs:
   deploy:
     needs: [build]
     runs-on: ubuntu-latest
-      env:
-        DJANGO_KEY: ${{ secrets.DJANGO_KEY }}
-        MONGO_KEY: $ {{ secrets.MONGO_KEY }}
+    env:
+      DJANGO_KEY: ${{ secrets.DJANGO_KEY }}
+      MONGO_KEY: $ {{ secrets.MONGO_KEY }}
     steps:
     - name: Checkout source code
       uses: actions/checkout@v2
