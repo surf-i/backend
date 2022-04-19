@@ -24,7 +24,7 @@ class TipoUsuario(models.Model):
 
 class Usuario(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    user = models.OneToOneField(User, models.CASCADE, default="")
+    user = models.OneToOneField(User, models.CASCADE, unique=True, default="")
     nombre = models.CharField(max_length=100, null=False)
     puntos = models.IntegerField(null=False, default=0)
     fechaVencimiento = models.DateField(null=False)
@@ -46,7 +46,7 @@ class Review(models.Model):
     gradoVeracidad = models.DecimalField(null=True, decimal_places=2, max_digits=4)
     website = models.ForeignKey(Website, null=False, on_delete=models.CASCADE)
     categoria = models.ForeignKey(Categoria, null=False, on_delete=models.CASCADE)
-    usuario = models.ForeignKey(Usuario, null=False, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     funcionalidadesDesbloqueadas = models.ManyToManyField(Funcionalidad, default=None)
     
 

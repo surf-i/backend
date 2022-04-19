@@ -19,7 +19,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ["DJANGO_KEY"]
+SECRET_KEY = "d7v7ts=w($w6fj+d9)s1ybd)-dniari18jn6(cd%5ei)7fpt" #os.environ["DJANGO_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -50,8 +50,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.discord',
     'websites',
-    'store',
-    'users'
+    'users',
+    'store'
 ]
 
 SITE_ID = 1
@@ -91,16 +91,23 @@ WSGI_APPLICATION = 'SurfiBack.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 # URL de la conexión a MongoDB
-DB_URI = os.environ["MONGO_KEY"]
+#DB_URI = os.environ["MONGO_KEY"]
+
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'djongo',
+#        'NAME': 'SurfiBack',
+#        'ENFORCE_SCHEMA':False,
+#        'CLIENT':{
+#            'host': DB_URI
+#        }
+#    }
+#}
 
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'SurfiBack',
-        'ENFORCE_SCHEMA':False,
-        'CLIENT':{
-            'host': DB_URI
-        }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 

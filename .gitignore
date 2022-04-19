@@ -375,3 +375,4 @@ yarn-error.log*
 *.cpython
 .vscode
 SurfiBack/settings.py
+*.sqlite3
