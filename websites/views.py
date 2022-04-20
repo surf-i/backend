@@ -22,15 +22,16 @@ def multiple_website_view(request):
         return JsonResponse(website_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(["GET"])
-def single_website_view(request, pk):
+def single_website_view(request):
     if request.method == "GET":
         try:
-            url = "http://" + pk
+            request_url= request.GET.get("url")
+            if not request_url:
+                return JsonResponse({"error": "Missing url or incorrect format on request parameters"}, status=status.HTTP_400_BAD_REQUEST)
+            url = "http://" + request_url
             website = wl.get_website_by_url(url)
             website_serializer = WebsiteSerializer(website)
             return JsonResponse(website_serializer.data, safe=False)
         except Website.DoesNotExist:
             return JsonResponse({"error": "Website does not exist"}, status=status.HTTP_404_NOT_FOUND)
-        except KeyError:
-            return JsonResponse({"error": "Missing url on request body"}, status=status.HTTP_400_BAD_REQUEST)
     return JsonResponse(website_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
