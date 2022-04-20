@@ -11,7 +11,7 @@ def get_websites_by_name(ws_pk):
     return websites
 
 def get_website_by_url(ws_pk):
-    website = Website.objects.filter(url=ws_pk).first()
+    website = Website.objects.get(url=ws_pk)
     return website
 
 def create_website(ws):

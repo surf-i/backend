@@ -25,5 +25,4 @@ def add_review_view(request):
                 return JsonResponse(request.data, status=status.HTTP_201_CREATED)
             return JsonResponse(request_serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
         except User.DoesNotExist:
-            #TODO Cambiar Data
-            return JsonResponse(request.data, status=status.HTTP_400_BAD_REQUEST) 
+            return JsonResponse({"error": "User does not exist"}, status=status.HTTP_400_BAD_REQUEST) 

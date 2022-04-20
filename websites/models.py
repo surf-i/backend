@@ -44,7 +44,7 @@ class Website(models.Model):
     url = models.URLField(null=False, max_length=50)
     calificacionPromedio = models.DecimalField(null=False, decimal_places=2, max_digits=4)
     gradoVeracidadPromedio = models.DecimalField(null=False, decimal_places=2, max_digits=4)
-    categorias = models.ManyToManyField(Categoria, default=None)
+    categoria = models.ForeignKey(Categoria, null=False, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.nombre}"   
