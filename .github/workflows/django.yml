@@ -1,4 +1,4 @@
-name: Docker CD
+name: Docker CD Workflow
 
 on:
   push:
