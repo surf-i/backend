@@ -1,5 +1,4 @@
 from django import forms
-from pymongo.errors import BulkWriteError
 from .models import Usuario, TipoUsuario
 class SignupForm(forms.Form):
     name = forms.CharField(max_length=100, label='Nombre')
