@@ -92,7 +92,7 @@ WSGI_APPLICATION = 'SurfiBack.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'surfi-database',
+        'NAME': 'surfi_database',
         'USER': os.environ["DB_USER"],
         'PASSWORD': os.environ["DB_PASSWORD"],
         'HOST': 'surfi-database.c5znty9bdwmf.us-east-1.rds.amazonaws.com',
