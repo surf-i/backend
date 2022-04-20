@@ -2,8 +2,9 @@ name: Docker CD Workflow
 
 on:
   push:
-    paths:
-      - "**Dockerfile**"
+    branches: master
+
+
 jobs:
   Backend-Cleanup:
     runs-on: ubuntu-latest
