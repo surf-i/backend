@@ -11,6 +11,7 @@ RUN mkdir "/home/surfi-services"
 ADD store /home/surfi-services/store
 ADD SurfiBack /home/surfi-services/SurfiBack
 ADD users /home/surfi-services/users
+ADD websites /home/surfi-services/websites
 ADD manage.py /home/surfi-services/manage.py
 ADD requirements.txt /home/surfi-services/requirements.txt
 
