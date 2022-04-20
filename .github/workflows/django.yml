@@ -6,26 +6,26 @@ on:
 
 
 jobs:
-  Backend-Cleanup:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Send Cleanup Commands to EC2
-        uses: peterkimzz/aws-ssm-send-command@master
-        id: ssm
-        with:
-          aws-region: ${{ secrets.AWS_REGION }}
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          instance-ids: ${{ secrets.INSTANCE_ID }}
-
-          working-directory: /home/surfi-services/SurfiBack
-          command: docker stop SurfiBack/backend;docker rm SurfiBack/backend
-          comment: Cleaning up before redeploying
+  #Backend-Cleanup:
+  #  runs-on: ubuntu-latest
+  #  steps:
+  #    - uses: actions/checkout@v2
+  #    - name: Send Cleanup Commands to EC2
+  #      uses: peterkimzz/aws-ssm-send-command@master
+  #      id: ssm
+  #      with:
+  #        aws-region: ${{ secrets.AWS_REGION }}
+  #        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  #        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  #        instance-ids: ${{ secrets.INSTANCE_ID }}
+  #
+  #        working-directory: /home/surfi-services/SurfiBack
+  #        command: docker stop SurfiBack/backend;docker rm SurfiBack/backend
+  #        comment: Cleaning up before redeploying
 
   Build-and-Push-Docker-Image:
     runs-on: ubuntu-latest
-    needs: Backend-Cleanup
+    #needs: Backend-Cleanup
     name: Docker Build, Tag, Push
     steps:
       - uses: actions/checkout@v2
@@ -41,20 +41,20 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-  Deploy:
-    runs-on: ubuntu-latest
-    needs: Build-and-Push-Docker-Image
-    steps:
-      - uses: actions/checkout@v2
-      - name: Send Cleanup Commands to EC2
-        uses: peterkimzz/aws-ssm-send-command@master
-        id: ssm
-        with:
-          aws-region: ${{ secrets.AWS_REGION }}
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          instance-ids: ${{ secrets.INSTANCE_ID }}
+  #Deploy:
+    #runs-on: ubuntu-latest
+    #needs: Build-and-Push-Docker-Image
+    #steps:
+     # - uses: actions/checkout@v2
+      #- name: Send Cleanup Commands to EC2
+       # uses: peterkimzz/aws-ssm-send-command@master
+        #id: ssm
+        #with:
+         # aws-region: ${{ secrets.AWS_REGION }}
+          #aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          #aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          #instance-ids: ${{ secrets.INSTANCE_ID }}
 
-          working-directory: /home/surfi-services/SurfiBack
-          command: sudo docker run --name SurfiBack/backend -p 80:8000 -d ${{ secrets.DOCKER_USERNAME }}/SurfiBack/backend python3 ./home/surfi-services/manage.py runserver 0.0.0.0:8000
-          comment: Deploy the server
+          #working-directory: /home/surfi-services/SurfiBack
+          # command: sudo docker run --name SurfiBack/backend -p 80:8000 -d ${{ secrets.DOCKER_USERNAME }}/SurfiBack/backend python3 ./home/surfi-services/manage.py runserver 0.0.0.0:8000
+          #comment: Deploy the server
