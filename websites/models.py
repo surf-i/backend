@@ -15,6 +15,8 @@ class Categoria(models.Model):
         TECNOLOGIA = 'TECNOLOGIA', _('Tecnologia')
         PRODUCTIVIDAD = 'PRODUCTIVIDAD', _('Productividad')
         TURISMO = 'TURISMO', _('Turismo')
+        INVESTIGACION = 'INVESTIGACION', _('Investigacion')
+        PERIODISMO = 'PERIODISMO', _('Periodismo')
     tipo = models.CharField(null=False, max_length=50, choices=CategoriaEnum.choices, default=CategoriaEnum.SOCIAL, primary_key=True)
 
     def is_upperclass(self):
@@ -22,7 +24,14 @@ class Categoria(models.Model):
             self.CategoriaEnum.SOCIAL,
             self.CategoriaEnum.ENTRETENIMIENTO,
             self.CategoriaEnum.NOTICIAS,
-            self.CategoriaEnum.ACADEMICO
+            self.CategoriaEnum.ACADEMICO,
+            self.CategoriaEnum.OPINION,
+            self.CategoriaEnum.COMERCIO,
+            self.CategoriaEnum.TECNOLOGIA,
+            self.CategoriaEnum.PRODUCTIVIDAD,
+            self.CategoriaEnum.TURISMO,
+            self.CategoriaEnum.INVESTIGACION,
+            self.CategoriaEnum.PERIODISMO
         }
 
     def __str__(self):

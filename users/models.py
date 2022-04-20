@@ -40,13 +40,15 @@ class Usuario(models.Model):
 class Review(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     comentario = models.CharField(max_length=254, null=True)
-    calificacion = models.DecimalField(null=False, decimal_places=2, max_digits=3)
+    calificacion = models.DecimalField(null=False, decimal_places=2, max_digits=3, default=0)
     fecha = models.DateTimeField(null=False)
-    gradoVeracidad = models.DecimalField(null=True, decimal_places=2, max_digits=4)
+    gradoVeracidad = models.DecimalField(null=False, decimal_places=2, max_digits=4, default=0)
     website = models.ForeignKey(Website, null=False, on_delete=models.CASCADE)
     categoria = models.ForeignKey(Categoria, null=False, on_delete=models.CASCADE)
     usuario = models.ForeignKey(User, null=False, on_delete=models.CASCADE)
     
+    class Meta:
+        unique_together = ('website', 'usuario')
 
     def __str__(self):
         return f"Review de Usuario: {self.usuario}, Website: {self.website}"
