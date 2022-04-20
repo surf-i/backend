@@ -14,7 +14,7 @@ ADD users /home/surfi-services/users
 ADD manage.py /home/surfi-services/manage.py
 ADD requirements.txt /home/surfi-services/requirements.txt
 
-RUN pip3 install -r requirements.txt
+RUN pip3 install -r /home/surfi-services/requirements.txt
 
 EXPOSE 8000
 
