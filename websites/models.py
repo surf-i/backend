@@ -41,8 +41,7 @@ class Website(models.Model):
         return f"{self.nombre}"   
 
 class ReviewMetadata(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    website = models.OneToOneField(Website, null=False, on_delete=models.CASCADE, unique=True)
+    website = models.OneToOneField(Website, on_delete=models.CASCADE, primary_key=True)
     numReviews = models.IntegerField(null=False, default=0)
     sumaCalificacion = models.IntegerField(null=False, default=0)
     sumaVeracidad = models.IntegerField(null=False, default=0)
@@ -51,8 +50,7 @@ class ReviewMetadata(models.Model):
         return f"Review Metadata de: {self.website}"
 
 class DatosCategoria(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    website = models.ForeignKey(Website, null=False, on_delete=models.CASCADE)
+    website = models.OneToOneField(Website, null=False, primary_key=True, on_delete=models.CASCADE)
     tipo = models.ForeignKey(Categoria, null=False, on_delete=models.CASCADE)
     cantReviews = models.IntegerField(null=False, default=0)
 

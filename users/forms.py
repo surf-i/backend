@@ -11,6 +11,6 @@ class SignupForm(forms.Form):
         usuario = Usuario.objects.create(user=user, 
                                         nombre=self.cleaned_data['name'], 
                                         puntos = 0, 
-                                        fechaVencimiento="1900-01-01", 
+                                        fechaVencimiento=None, 
                                         tipoUsuario=tipo)
         usuario.save()

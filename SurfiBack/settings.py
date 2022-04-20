@@ -88,26 +88,15 @@ WSGI_APPLICATION = 'SurfiBack.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
-# URL de la conexión a MongoDB
-#DB_URI = os.environ["MONGO_KEY"]
-
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'djongo',
-#        'NAME': 'SurfiBack',
-#        'ENFORCE_SCHEMA':False,
-#        'CLIENT':{
-#            'host': DB_URI
-#        }
-#    }
-#}
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'surfi-database',
+        'USER': os.environ["DB_USER"],
+        'PASSWORD': os.environ["DB_PASSWORD"],
+        'HOST': 'surfi-database.c5znty9bdwmf.us-east-1.rds.amazonaws.com',
+        'PORT':'5432'
     }
 }
 
