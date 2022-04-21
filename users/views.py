@@ -14,7 +14,7 @@ def add_review_view(request):
     if request.method == "POST":
         try:
             website = wl.get_website_by_url(request.data["url"])
-            user = ul.get_user_by_tokemn(request.data["key"])
+            user = ul.get_user_by_token(request.data["key"])
             request.data["review"]["website"] = website.id
             request.data["review"]["usuario"] = user.id
             request_serializer = ReviewSerializer(data=request.data["review"], context={"website": website, "user": user})
