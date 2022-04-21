@@ -26,6 +26,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'backend']
 
+CSRF_TRUSTED_ORIGINS = ["http://ec2-54-81-183-223.compute-1.amazonaws.com"]
+
 SECURE_SSL_REDIRECT = False
 SECURE_HSTS_SECONDS = False
 SESSION_COOKIE_SECURE = False
