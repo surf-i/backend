@@ -14,7 +14,7 @@ def add_review_view(request):
     if request.method == "POST":
         auth = request.META.get("HTTP_AUTHORIZATION")
         if not auth:
-            return JsonResponse({"ERROR: User must be authenticated"}, status=status.HTTP_401_UNAUTHORIZED, safe=False)
+            return JsonResponse({"ERROR": "User must be authenticated"}, status=status.HTTP_401_UNAUTHORIZED)
         else:
             auth = auth.split(" ")[1]
             user = ul.get_user_by_token(auth)
@@ -29,4 +29,4 @@ def add_review_view(request):
                 return JsonResponse(request.data, status=status.HTTP_201_CREATED)
             return JsonResponse(request_serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
         except User.DoesNotExist:
-            return JsonResponse({"error": "User does not exist"}, status=status.HTTP_400_BAD_REQUEST, safe=False)
+            return JsonResponse({"ERROR": "User does not exist"}, status=status.HTTP_400_BAD_REQUEST)
