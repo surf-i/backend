@@ -9,13 +9,12 @@ from django.http.response import JsonResponse
 from rest_framework import status
 from django.contrib.auth.models import User
 
-#TODO: Test
 @api_view(["POST"])
 def add_review_view(request):
     if request.method == "POST":
         try:
             website = wl.get_website_by_url(request.data["url"])
-            user = ul.get_user_by_username(request.data["username"])
+            user = ul.get_user_by_tokemn(request.data["key"])
             request.data["review"]["website"] = website.id
             request.data["review"]["usuario"] = user.id
             request_serializer = ReviewSerializer(data=request.data["review"], context={"website": website, "user": user})
@@ -25,4 +24,4 @@ def add_review_view(request):
                 return JsonResponse(request.data, status=status.HTTP_201_CREATED)
             return JsonResponse(request_serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
         except User.DoesNotExist:
-            return JsonResponse({"error": "User does not exist"}, status=status.HTTP_400_BAD_REQUEST) 
+            return JsonResponse({"error": "User does not exist"}, status=status.HTTP_400_BAD_REQUEST)

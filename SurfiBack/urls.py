@@ -15,10 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from allauth.account.views import ConfirmEmailView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('websites/', include('websites.urls')),
     path('users/', include('users.urls')),
-    path('accounts/', include('allauth.urls'))
+    path('accounts/', include('allauth.urls')),
+    path('dj-rest-auth/', include('dj_rest_auth.urls')),
+    path('dj-rest-auth/signup/account-confirm-email/<str:key>/',ConfirmEmailView.as_view(), name='account_confirm_email'),
+    path('dj-rest-auth/signup/', include('dj_rest_auth.registration.urls')),
 ]
