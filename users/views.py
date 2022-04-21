@@ -12,9 +12,15 @@ from django.contrib.auth.models import User
 @api_view(["POST"])
 def add_review_view(request):
     if request.method == "POST":
+        auth = request.META.get("HTTP_AUTHORIZATION")
+        print(request.META.get("HTTP_AUTHORIZATION"))
+        print(auth)
+        if not auth:
+            return JsonResponse({"ERROR: User must be authenticated"}, status=status.HTTP_401_UNAUTHORIZED)
+        else:
+            user = ul.get_user_by_token(auth)
         try:
             website = wl.get_website_by_url(request.data["url"])
-            user = ul.get_user_by_token(request.data["key"])
             request.data["review"]["website"] = website.id
             request.data["review"]["usuario"] = user.id
             request_serializer = ReviewSerializer(data=request.data["review"], context={"website": website, "user": user})
