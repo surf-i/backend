@@ -5,7 +5,7 @@ def update_metadata(review, website):
         metadata = wl.get_website_review_metadata(website.id)
         metadata.numReviews += 1
         metadata.sumaCalificacion += review["calificacion"]
-        metadata.sumaVeracidad += review["veracidad"]
+        metadata.sumaVeracidad += review["gradoVeracidad"]
         metadata.save()
     except ReviewMetadata.DoesNotExist:
         metadata = wl.create_review_metadata(review, website)
