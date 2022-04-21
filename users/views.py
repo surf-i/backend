@@ -13,11 +13,11 @@ from django.contrib.auth.models import User
 def add_review_view(request):
     if request.method == "POST":
         auth = request.META.get("HTTP_AUTHORIZATION")
-        print(request.META.get("HTTP_AUTHORIZATION"))
-        print(auth)
         if not auth:
             return JsonResponse({"ERROR: User must be authenticated"}, status=status.HTTP_401_UNAUTHORIZED)
         else:
+            auth = auth.split(" ")[1]
+            print(auth)
             user = ul.get_user_by_token(auth)
         try:
             website = wl.get_website_by_url(request.data["url"])
