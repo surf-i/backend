@@ -4,3 +4,4 @@ dnspython==2.2.1
 django-allauth==0.50.0
 psycopg2-binary
 dj-rest-auth
+django-cors-headers 
