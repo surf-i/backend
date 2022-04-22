@@ -66,7 +66,8 @@ class ReviewMetadata(models.Model):
         return f"Review Metadata de: {self.website}"
 
 class DatosCategoria(models.Model):
-    website = models.OneToOneField(Website, null=False, primary_key=True, on_delete=models.CASCADE)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    website = models.OneToOneField(Website, null=False, on_delete=models.CASCADE)
     tipo = models.ForeignKey(Categoria, null=False, on_delete=models.CASCADE)
     cantReviews = models.IntegerField(null=False, default=0)
 

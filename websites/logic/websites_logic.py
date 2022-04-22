@@ -32,11 +32,14 @@ def create_review_metadata(review, website):
     metadata.save()
     return metadata
 
-def update_website_metadata(website, metadata):
+def update_website_metadata(website, metadata, review):
     cat_metadata = get_website_category_metadata(website.id).latest('cantReviews')
     website.calificacionPromedio = metadata.sumaCalificacion / metadata.numReviews
     website.gradoVeracidadPromedio = metadata.sumaVeracidad / metadata.numReviews
     website.categoria = cat_metadata.tipo
+    if review["calificacionDiseno"] != None and review["calificacionUsabilidad"] != None:
+        website.calificacionDisenoPromedio = metadata.sumaDiseno / metadata.numReviewsOptionalParams
+        website.calificacionUsabilidadPromedio = metadata.sumaUsabilidad / metadata.numReviewsOptionalParams
     website.save()
     return website
 
