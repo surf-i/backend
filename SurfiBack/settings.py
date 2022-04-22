@@ -104,7 +104,8 @@ DATABASES = {
         'USER': os.environ["DB_USER"],
         'PASSWORD': os.environ["DB_PASSWORD"],
         'HOST': 'surfi-database.c5znty9bdwmf.us-east-1.rds.amazonaws.com',
-        'PORT':'5432'
+        'PORT':'5432',
+        'ATOMIC_REQUESTS': True,
     }
 }
 
@@ -160,8 +161,8 @@ AUTHENTICATION_BACKENDS = [
 
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.office365.com'
-EMAIL_HOST_USER = "surfi.team@outlook.com"
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = "noreply.surfi@gmail.com"
 EMAIL_HOST_PASSWORD = os.environ["EMAIL_PASSWORD"]
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
