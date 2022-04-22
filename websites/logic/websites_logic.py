@@ -25,7 +25,10 @@ def get_website_review_metadata(ws_pk):
     return metadata
 
 def create_review_metadata(review, website):
-    metadata = ReviewMetadata.objects.create(website=website, numReviews=1, sumaCalificacion=review["calificacion"], sumaVeracidad=review["gradoVeracidad"])
+    numOpt = 0
+    if review["calificacionDiseno"] != None and review["calificacionUsabilidad"] != None:
+        numOpt = 1
+    metadata = ReviewMetadata.objects.create(website=website, numReviews=1, sumaCalificacion=review["calificacion"], sumaVeracidad=review["gradoVeracidad"], sumaCalificacionDiseno=review["calificacionDiseno"], sumaCalificacionUsabilidad=review["calificacionUsabilidad"], numReviewsOptParams=numOpt)
     metadata.save()
     return metadata
 

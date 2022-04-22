@@ -6,6 +6,10 @@ def update_metadata(review, website):
         metadata.numReviews += 1
         metadata.sumaCalificacion += review["calificacion"]
         metadata.sumaVeracidad += review["gradoVeracidad"]
+        if review["calificacionDiseno"] != None and review["calificacionDiseno"] != None:
+            metadata.sumaCalificacionDiseno += review["calificacionDiseno"]
+            metadata.sumaCalificacionUsabilidad += review["calificacionUsabilidad"]
+            metadata.numReviewsOptParams += 1
         metadata.save()
     except ReviewMetadata.DoesNotExist:
         metadata = wl.create_review_metadata(review, website)

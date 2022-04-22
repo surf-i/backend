@@ -377,4 +377,3 @@ yarn-error.log*
 SurfiBack/settings.py
 *.sqlite3
 *__pycache__*
-*migrations*

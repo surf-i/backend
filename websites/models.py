@@ -6,6 +6,7 @@ import uuid
 
 class Categoria(models.Model):
     class CategoriaEnum(models.TextChoices):
+        NO_CALIFICADO = 'NO CALIFICADO', _('No calificado')
         SOCIAL = 'SOCIAL', _('Social')
         ENTRETENIMIENTO = 'ENTRETENIMIENTO', _('Entretenimiento')
         NOTICIAS = 'NOTICIAS',_('Noticias')
@@ -17,10 +18,11 @@ class Categoria(models.Model):
         TURISMO = 'TURISMO', _('Turismo')
         INVESTIGACION = 'INVESTIGACION', _('Investigacion')
         PERIODISMO = 'PERIODISMO', _('Periodismo')
-    tipo = models.CharField(null=False, max_length=50, choices=CategoriaEnum.choices, default=CategoriaEnum.SOCIAL, primary_key=True)
+    tipo = models.CharField(null=False, max_length=50, choices=CategoriaEnum.choices, default=CategoriaEnum.NO_CALIFICADO, primary_key=True)
 
     def is_upperclass(self):
         return self.tipo in {
+            self.CategoriaEnum.NO_CALIFICADO,
             self.CategoriaEnum.SOCIAL,
             self.CategoriaEnum.ENTRETENIMIENTO,
             self.CategoriaEnum.NOTICIAS,
@@ -45,6 +47,8 @@ class Website(models.Model):
     calificacionPromedio = models.DecimalField(null=False, decimal_places=2, max_digits=4)
     gradoVeracidadPromedio = models.DecimalField(null=False, decimal_places=2, max_digits=4)
     categoria = models.ForeignKey(Categoria, null=False, on_delete=models.CASCADE)
+    disenoPromedio = models.DecimalField(null=False, decimal_places=2, max_digits=4, default=0)
+    usabilidadPromedio = models.DecimalField(null=False, decimal_places=2, max_digits=4, default=0)
 
     def __str__(self):
         return f"{self.nombre}"   
@@ -54,6 +58,9 @@ class ReviewMetadata(models.Model):
     numReviews = models.IntegerField(null=False, default=0)
     sumaCalificacion = models.IntegerField(null=False, default=0)
     sumaVeracidad = models.IntegerField(null=False, default=0)
+    numReviewsOptionalParams = models.IntegerField(null=False, default=0)
+    sumaDiseno = models.IntegerField(null=False, default=0)
+    sumaUsabilidad = models.IntegerField(null=False, default=0)
 
     def __str__(self):
         return f"Review Metadata de: {self.website}"

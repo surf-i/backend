@@ -5,9 +5,4 @@ from .models import Website
 class WebsiteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Website
-        fields = ('id',
-                  'nombre',
-                  'url',
-                  'calificacionPromedio',
-                  'gradoVeracidadPromedio',
-                  'categoria')
+        fields = '__all__'
