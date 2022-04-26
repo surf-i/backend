@@ -26,7 +26,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'backend']
 
-CSRF_TRUSTED_ORIGINS = ["http://*.amazonaws.com"]
+CSRF_TRUSTED_ORIGINS = ["http://*.amazonaws.com", "https://44.195.183.116/", "http://44.195.183.116/"]
 
 SECURE_SSL_REDIRECT = False
 SECURE_HSTS_SECONDS = False
