@@ -47,11 +47,13 @@ class Website(models.Model):
     calificacionPromedio = models.DecimalField(null=False, decimal_places=2, max_digits=4)
     gradoVeracidadPromedio = models.DecimalField(null=False, decimal_places=2, max_digits=4)
     categoria = models.ForeignKey(Categoria, null=False, on_delete=models.CASCADE)
+    autor = models.CharField(null=True, max_length=50)
+    fecha = models.DateField(null=True)
     disenoPromedio = models.DecimalField(null=False, decimal_places=2, max_digits=4, default=0)
     usabilidadPromedio = models.DecimalField(null=False, decimal_places=2, max_digits=4, default=0)
-
+    
     def __str__(self):
-        return f"{self.nombre}"   
+        return f"{self.nombre}"
 
 class ReviewMetadata(models.Model):
     website = models.OneToOneField(Website, on_delete=models.CASCADE, primary_key=True)
