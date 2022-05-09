@@ -176,3 +176,8 @@ ACCOUNT_LOGOUT_ON_GET = True
 ACCOUNT_SIGNUP_FORM_CLASS = 'users.forms.SignupForm'
 ACCOUNT_SIGNUP_REDIRECT_URL = 'accounts/confirm-email/'
 CORS_ORIGIN_ALLOW_ALL = True
+
+
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'REGISTER_SERIALIZER': 'users.serializers.SurfiRegisterSerializer'
+}
