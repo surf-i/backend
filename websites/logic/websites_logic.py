@@ -11,8 +11,12 @@ def get_websites_by_name(ws_pk):
     return websites
 
 def get_website_by_url(ws_pk):
-    website = Website.objects.get(url=ws_pk)
-    return website
+    try:
+        website = Website.objects.get(url=ws_pk)
+        return website
+    except Website.DoesNotExist:
+        return None
+    
 
 def create_website(ws):
     categorias = Categoria.objects.get(pk=ws["categorias"])
@@ -21,8 +25,11 @@ def create_website(ws):
     return website
 
 def get_website_review_metadata(ws_pk):
-    metadata = ReviewMetadata.objects.get(website=ws_pk)
-    return metadata
+    try:
+        metadata = ReviewMetadata.objects.get(website=ws_pk)
+        return metadata
+    except ReviewMetadata.DoesNotExist:
+        return None
 
 def create_review_metadata(review, website):
     numOpt = 0

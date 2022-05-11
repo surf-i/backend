@@ -9,13 +9,11 @@ class Categoria(models.Model):
         NO_CALIFICADO = 'NO CALIFICADO', _('No calificado')
         SOCIAL = 'SOCIAL', _('Social')
         ENTRETENIMIENTO = 'ENTRETENIMIENTO', _('Entretenimiento')
-        NOTICIAS = 'NOTICIAS',_('Noticias')
+        ORGANIZACION = 'ORGANIZACION',_('Organizacion')
         ACADEMICO = 'ACADEMICO', _('Academico')
-        OPINION = 'OPINION', _('Opinion')
         COMERCIO = 'COMERCIO', _('Comercio')
         TECNOLOGIA = 'TECNOLOGIA', _('Tecnologia')
         PRODUCTIVIDAD = 'PRODUCTIVIDAD', _('Productividad')
-        TURISMO = 'TURISMO', _('Turismo')
         INVESTIGACION = 'INVESTIGACION', _('Investigacion')
         PERIODISMO = 'PERIODISMO', _('Periodismo')
     tipo = models.CharField(null=False, max_length=50, choices=CategoriaEnum.choices, default=CategoriaEnum.NO_CALIFICADO, primary_key=True)
@@ -25,13 +23,11 @@ class Categoria(models.Model):
             self.CategoriaEnum.NO_CALIFICADO,
             self.CategoriaEnum.SOCIAL,
             self.CategoriaEnum.ENTRETENIMIENTO,
-            self.CategoriaEnum.NOTICIAS,
+            self.CategoriaEnum.ORGANIZACION,
             self.CategoriaEnum.ACADEMICO,
-            self.CategoriaEnum.OPINION,
             self.CategoriaEnum.COMERCIO,
             self.CategoriaEnum.TECNOLOGIA,
             self.CategoriaEnum.PRODUCTIVIDAD,
-            self.CategoriaEnum.TURISMO,
             self.CategoriaEnum.INVESTIGACION,
             self.CategoriaEnum.PERIODISMO
         }

@@ -4,6 +4,7 @@ from dj_rest_auth.registration.serializers import RegisterSerializer
 
 
 class ReviewSerializer(serializers.ModelSerializer):
+    comentario = serializers.CharField(allow_null=True)
     calificacion = serializers.FloatField(min_value=0, max_value=5)
     gradoVeracidad = serializers.FloatField(min_value=0, max_value=99)
     calificacionDiseno = serializers.FloatField(min_value=0, max_value=99, allow_null=True)
