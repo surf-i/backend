@@ -20,6 +20,7 @@ def single_website_view(request):
         website_serializer = WebsiteSerializer(website)
         return JsonResponse(website_serializer.data, safe=False)
     elif request.method == "POST":
+        request.data["categoria"] = "NO CALIFICADO"
         website_dto = JSONParser().parse(request)
         website_serializer = WebsiteSerializer(data=website_dto)
         if website_serializer.is_valid():
