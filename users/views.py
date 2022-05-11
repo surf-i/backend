@@ -1,5 +1,4 @@
 from rest_framework.decorators import api_view
-from rest_framework.parsers import JSONParser
 from .serializers import ReviewSerializer
 from .logic import users_logic as ul
 from .logic import metadata_logic as ml
