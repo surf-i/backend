@@ -27,5 +27,5 @@ def add_review_view(request):
                     ml.update_metadata(request_serializer.validated_data, website)
                     return JsonResponse(request.data, status=status.HTTP_201_CREATED)
                 return JsonResponse(request_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        except (Token.DoesNotExist, User.DoesNotExist, KeyError):
+        except (Token.DoesNotExist, User.DoesNotExist, KeyError, AttributeError):
             return JsonResponse({"ERROR": "Token bad request"}, status=status.HTTP_400_BAD_REQUEST)

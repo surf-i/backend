@@ -5,7 +5,6 @@ from rest_framework.parsers import JSONParser
 from .serializers import WebsiteSerializer
 from rest_framework import status
 from .logic import websites_logic as wl
-from .models import Website
 from django.db import transaction
 
 @transaction.non_atomic_requests
