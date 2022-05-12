@@ -16,6 +16,10 @@ def get_website_by_url(ws_pk):
         return website
     except Website.DoesNotExist:
         return None
+
+def get_multiple_websites_by_urls(urls):
+    websites = Website.objects.filter(url__in=urls)
+    return websites
     
 
 def create_website(ws):

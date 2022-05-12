@@ -37,10 +37,6 @@ def multiple_website_view(request):
         request_urls = request.GET.getlist('url')
         if not request_urls:
             return JsonResponse({"error": "Missing url or incorrect format on request parameters"}, status=status.HTTP_400_BAD_REQUEST)
-        website_list = list()
-
-        for website in request_urls:
-            raw_website = wl.get_website_by_url(website)
-            website_list.append(WebsiteSerializer(raw_website).data)
-
-        return JsonResponse(website_list, safe=False)
+        websites = wl.get_multiple_websites_by_urls(request_urls)
+        websites_serializer = WebsiteSerializer(websites, many=True)
+        return JsonResponse(websites_serializer.data, safe=False)
