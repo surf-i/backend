@@ -22,6 +22,13 @@ def single_website_view(request):
         return JsonResponse(website_serializer.data, safe=False)
     elif request.method == "POST":
         request.data["categoria"] = "NO CALIFICADO"
+        request.data["gradoVeracidadPromedio"] = 0.0
+        request.data["calificacionPromedio"] = 0.0
+        request.data["autor"] = None
+        request.data["fecha"] = None
+        request.data["disenoPromedio"] = 0.0
+        request.data["usabilidadPromedio"] = 0.0
+        
         website_dto = JSONParser().parse(request)
         website_serializer = WebsiteSerializer(data=website_dto)
         if website_serializer.is_valid():
