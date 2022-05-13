@@ -19,6 +19,8 @@ def add_review_view(request):
                 auth = auth.split(" ")[1]
                 user = ul.get_user_by_token(auth)
                 website = wl.get_website_by_url(request.data["url"])
+                if not website:
+                    return JsonResponse({"ERROR":"Website does not exist"}, status=status.HTTP_400_BAD_REQUEST) 
                 request.data["review"]["website"] = website.id
                 request.data["review"]["usuario"] = user.id
                 request_serializer = ReviewSerializer(data=request.data["review"], context={"website": website, "user": user})
