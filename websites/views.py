@@ -28,9 +28,7 @@ def single_website_view(request):
         request.data["fecha"] = None
         request.data["disenoPromedio"] = 0.0
         request.data["usabilidadPromedio"] = 0.0
-        print(request.data)
-        website_dto = JSONParser().parse(request)
-        website_serializer = WebsiteSerializer(data=website_dto)
+        website_serializer = WebsiteSerializer(data=request.data)
         if website_serializer.is_valid():
             website_serializer.save()
             return JsonResponse(website_serializer.data, status=status.HTTP_201_CREATED)
