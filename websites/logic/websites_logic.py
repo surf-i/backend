@@ -29,11 +29,8 @@ def create_website(ws):
     return website
 
 def get_website_review_metadata(ws_pk):
-    try:
-        metadata = ReviewMetadata.objects.get(website=ws_pk)
-        return metadata
-    except ReviewMetadata.DoesNotExist:
-        return None
+    metadata = ReviewMetadata.objects.get(website=ws_pk)
+    return metadata
 
 def create_review_metadata(review, website):
     numOpt = 0
