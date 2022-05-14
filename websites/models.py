@@ -5,30 +5,30 @@ import uuid
 
 class Categoria(models.Model):
     class CategoriaEnum(models.TextChoices):
-        NO_CALIFICADO = 'NO CALIFICADO', _('No calificado')
+        NOT_RATED = 'NOT RATED', _('Not Rated')
         SOCIAL = 'SOCIAL', _('Social')
-        ENTRETENIMIENTO = 'ENTRETENIMIENTO', _('Entretenimiento')
-        ORGANIZACION = 'ORGANIZACION',_('Organizacion')
-        ACADEMICO = 'ACADEMICO', _('Academico')
-        COMERCIO = 'COMERCIO', _('Comercio')
-        TECNOLOGIA = 'TECNOLOGIA', _('Tecnologia')
-        PRODUCTIVIDAD = 'PRODUCTIVIDAD', _('Productividad')
-        INVESTIGACION = 'INVESTIGACION', _('Investigacion')
-        PERIODISMO = 'PERIODISMO', _('Periodismo')
-    tipo = models.CharField(null=False, max_length=50, choices=CategoriaEnum.choices, default=CategoriaEnum.NO_CALIFICADO, primary_key=True)
+        ENTERTAINMENT = 'ENTERTAINMENT', _('Entertainment')
+        BUSINESS_ORG = 'BUSINESS/ORG',_('Business/Org')
+        ACADEMIC = 'ACADEMIC', _('Academic')
+        SHOPPING = 'SHOPPING', _('Shopping')
+        TECHNOLOGY = 'TECHNOLOGY', _('Technology')
+        PRODUCTIVITY_TOOLS = 'PRODUCTIVITY TOOLS', _('Productivity Tools')
+        RESEARCH = 'RESEARCH', _('Research')
+        NEWS = 'NEWS', _('News')
+    tipo = models.CharField(null=False, max_length=50, choices=CategoriaEnum.choices, default=CategoriaEnum.NOT_RATED, primary_key=True)
 
     def is_upperclass(self):
         return self.tipo in {
-            self.CategoriaEnum.NO_CALIFICADO,
+            self.CategoriaEnum.NOT_RATED,
             self.CategoriaEnum.SOCIAL,
-            self.CategoriaEnum.ENTRETENIMIENTO,
-            self.CategoriaEnum.ORGANIZACION,
-            self.CategoriaEnum.ACADEMICO,
-            self.CategoriaEnum.COMERCIO,
-            self.CategoriaEnum.TECNOLOGIA,
-            self.CategoriaEnum.PRODUCTIVIDAD,
-            self.CategoriaEnum.INVESTIGACION,
-            self.CategoriaEnum.PERIODISMO
+            self.CategoriaEnum.ENTERTAINMENT,
+            self.CategoriaEnum.BUSINESS_ORG,
+            self.CategoriaEnum.ACADEMIC,
+            self.CategoriaEnum.SHOPPING,
+            self.CategoriaEnum.TECHNOLOGY,
+            self.CategoriaEnum.PRODUCTIVITY_TOOLS,
+            self.CategoriaEnum.RESEARCH,
+            self.CategoriaEnum.NEWS 
         }
 
     def __str__(self):
