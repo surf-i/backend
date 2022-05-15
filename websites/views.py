@@ -30,7 +30,7 @@ def single_website_view(request):
             else:
                 auth = auth.split(" ")[1]
                 ul.get_user_by_token(auth)
-                request.data["url"] = "https://" + request.data["url"]
+                request.data["url"] = request.data["url"]
                 request.data["categoria"] = "NOT RATED"
                 request.data["gradoVeracidadPromedio"] = 0.0
                 request.data["calificacionPromedio"] = 0.0
