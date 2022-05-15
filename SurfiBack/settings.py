@@ -19,7 +19,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ["DJANGO_KEY"]
+SECRET_KEY = "d7v7ts=w($w6fj+d9)s1ybd)-dniari18jn6(cd%5ei)7fpt" #os.environ["DJANGO_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -101,8 +101,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'surfi_database',
-        'USER': os.environ["DB_USER"],
-        'PASSWORD': os.environ["DB_PASSWORD"],
+        'USER': "surfier",#os.environ["DB_USER"],
+        'PASSWORD': "B&UsWrbv587i22Nmee&e",#os.environ["DB_PASSWORD"],
         'HOST': 'surfi-database.c5znty9bdwmf.us-east-1.rds.amazonaws.com',
         'PORT':'5432',
         'ATOMIC_REQUESTS': True,
