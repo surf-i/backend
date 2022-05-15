@@ -22,7 +22,7 @@ def single_website_view(request):
         return JsonResponse(website_serializer.data, safe=False)
     elif request.method == "POST":
         request.data["url"] = "https://" + request.data["url"]
-        request.data["categoria"] = "NO CALIFICADO"
+        request.data["categoria"] = "NOT RATED"
         request.data["gradoVeracidadPromedio"] = 0.0
         request.data["calificacionPromedio"] = 0.0
         request.data["autor"] = None
