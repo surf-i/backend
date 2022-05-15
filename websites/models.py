@@ -12,7 +12,7 @@ class Categoria(models.Model):
         ACADEMIC = 'ACADEMIC', _('Academic')
         SHOPPING = 'SHOPPING', _('Shopping')
         TECHNOLOGY = 'TECHNOLOGY', _('Technology')
-        PRODUCTIVITY_TOOLS = 'PRODUCTIVITY TOOLS', _('Productivity Tools')
+        PRODUCTIVITY = 'PRODUCTIVITY', _('Productivity')
         RESEARCH = 'RESEARCH', _('Research')
         NEWS = 'NEWS', _('News')
     tipo = models.CharField(null=False, max_length=50, choices=CategoriaEnum.choices, default=CategoriaEnum.NOT_RATED, primary_key=True)
@@ -26,7 +26,7 @@ class Categoria(models.Model):
             self.CategoriaEnum.ACADEMIC,
             self.CategoriaEnum.SHOPPING,
             self.CategoriaEnum.TECHNOLOGY,
-            self.CategoriaEnum.PRODUCTIVITY_TOOLS,
+            self.CategoriaEnum.PRODUCTIVITY,
             self.CategoriaEnum.RESEARCH,
             self.CategoriaEnum.NEWS 
         }
