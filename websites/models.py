@@ -38,7 +38,7 @@ class Categoria(models.Model):
 class Website(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     nombre = models.CharField(null=False, max_length=250)
-    url = models.URLField(null=False, max_length=2000)
+    url = models.URLField(null=False, max_length=2000, unique=True)
     resumen = models.CharField(null=False, max_length=250, default="")
     calificacionPromedio = models.DecimalField(null=False, decimal_places=1, max_digits=3)
     gradoVeracidadPromedio = models.DecimalField(null=False, decimal_places=1, max_digits=3)
