@@ -40,13 +40,13 @@ class Website(models.Model):
     nombre = models.CharField(null=False, max_length=250)
     url = models.URLField(null=False, max_length=2000)
     resumen = models.CharField(null=False, max_length=250, default="")
-    calificacionPromedio = models.DecimalField(null=False, decimal_places=2, max_digits=4)
-    gradoVeracidadPromedio = models.DecimalField(null=False, decimal_places=2, max_digits=4)
+    calificacionPromedio = models.DecimalField(null=False, decimal_places=1, max_digits=4)
+    gradoVeracidadPromedio = models.DecimalField(null=False, decimal_places=1, max_digits=4)
     categoria = models.ForeignKey(Categoria, null=False, on_delete=models.CASCADE)
     autor = models.CharField(null=True, max_length=50)
     fecha = models.DateField(null=True)
-    disenoPromedio = models.DecimalField(null=False, decimal_places=2, max_digits=4, default=0)
-    usabilidadPromedio = models.DecimalField(null=False, decimal_places=2, max_digits=4, default=0)
+    disenoPromedio = models.DecimalField(null=False, decimal_places=1, max_digits=4, default=0)
+    usabilidadPromedio = models.DecimalField(null=False, decimal_places=1, max_digits=4, default=0)
     
     def __str__(self):
         return f"{self.nombre}"

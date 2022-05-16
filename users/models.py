@@ -40,14 +40,14 @@ class Usuario(models.Model):
 class Review(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     comentario = models.CharField(max_length=254, null=True)
-    calificacion = models.DecimalField(null=False, decimal_places=2, max_digits=3, default=0)
+    calificacion = models.DecimalField(null=False, decimal_places=1, max_digits=4, default=0)
     fecha = models.DateTimeField(null=False)
-    gradoVeracidad = models.DecimalField(null=False, decimal_places=3, max_digits=5, default=0)
+    gradoVeracidad = models.DecimalField(null=False, decimal_places=1, max_digits=4, default=0)
     website = models.ForeignKey(Website, null=False, on_delete=models.CASCADE)
     categoria = models.ForeignKey(Categoria, null=False, on_delete=models.CASCADE)
     usuario = models.ForeignKey(User, null=False, on_delete=models.CASCADE)
-    calificacionDiseno = models.DecimalField(null=True, decimal_places=3, max_digits=5, default=0)
-    calificacionUsabilidad = models.DecimalField(null=True, decimal_places=3, max_digits=5, default=0)
+    calificacionDiseno = models.DecimalField(null=True, decimal_places=1, max_digits=4, default=0)
+    calificacionUsabilidad = models.DecimalField(null=True, decimal_places=1, max_digits=4, default=0)
     
     class Meta:
         unique_together = ('website', 'usuario')
